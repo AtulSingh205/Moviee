@@ -59,7 +59,7 @@ const App = () => {
 
   useEffect(() => {
     if (search !== "") {
-      fetchdata();
+      fetchdata()
     }
   }, [search]);
 
@@ -92,7 +92,7 @@ const App = () => {
 </div>
 
 
-  );
-};
+  )
+}
 
 export default App;
