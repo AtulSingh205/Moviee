@@ -54,14 +54,14 @@ const App = () => {
       `https://www.omdbapi.com/?apikey=${Api_Key}&s=${search}`
     );
     let result = await Store.json();
-    SetMovie(result.Search || []);
+    SetMovie(result.Search || [])
   }
 
   useEffect(() => {
     if (search !== "") {
       fetchdata()
     }
-  }, [search]);
+  }, [search])
 
   return (
  <div className="relative h-screen w-full">
