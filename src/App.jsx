@@ -3,40 +3,7 @@ import Card from "./Componet/Card";
 import Search from "./Componet/Search";
 
 const App = () => {
-  const [Movie, SetMovie] = useState([
-    {
-      Title: "Don Jon",
-      Year: "2013",
-      imdbID: "tt2229499",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BNDgwMTU2NDctODI0YS00ZmIxLWFiNjEtZDI2ZGE3NWFlZDY2XkEyXkFqcGc@._V1_SX300.jpg",
-    },
-    {
-      Title: "Don 2",
-      Year: "2011",
-      imdbID: "tt1285241",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BOTc3YmI2OTgtMTBmMi00Y2FmLWJjNGUtZTJjOGI1NDVlMDY5XkEyXkFqcGc@._V1_SX300.jpg",
-    },
-    {
-      Title: "Don Juan DeMarco",
-      Year: "1994",
-      imdbID: "tt0112883",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BMTFjOWJhYjUtNjllYi00MDdkLWJjYTMtNTNlNjJlMDVmZGJlXkEyXkFqcGc@._V1_SX300.jpg",
-    },
-    {
-      Title: "Don",
-      Year: "2006",
-      imdbID: "tt0461936",
-      Type: "movie",
-      Poster:
-        "https://m.media-amazon.com/images/M/MV5BYjBmOTg2NTgtZTc2Mi00ZWRhLTkzMWQtMDI0YThhZTcyMzYwXkEyXkFqcGc@._V1_SX300.jpg",
-    },
-  ]);
+  const [Movie, SetMovie] = useState([]);
 
   const [search, SetSearch] = useState("");
 
@@ -51,16 +18,14 @@ const App = () => {
   async function fetchdata() {
     let Api_Key = "dd4ad9fd";
     let Store = await fetch(
-      `https://www.omdbapi.com/?apikey=${Api_Key}&s=${search}`
+      `https://www.omdbapi.com/?apikey=${Api_Key}&s=${search || "marvel"}`
     );
     let result = await Store.json();
     SetMovie(result.Search || [])
   }
 
   useEffect(() => {
-    if (search !== "") {
       fetchdata()
-    }
   }, [search])
 
   return (
@@ -74,8 +39,6 @@ const App = () => {
   <div className="absolute inset-0 bg-black/50 -z-10"></div>
   </div>
  
-
-  {/* ✅ Content wrapper */}
   <div className="relative z-10 flex flex-col items-center gap-6 p-6">
     <img
       className="h-20 w-24"
