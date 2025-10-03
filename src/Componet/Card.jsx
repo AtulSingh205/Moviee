@@ -24,4 +24,4 @@ const Card = ({fetchSearch}) => {
   )
 }
 
-export default Card
+export default Card;

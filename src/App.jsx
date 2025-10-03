@@ -25,8 +25,7 @@ const App = () => {
       `https://www.omdbapi.com/?apikey=${Api_Key}&s=${search || "marvel"}`
     );
     let result = await Store.json();
-    SetMovie(result.Search || [])
-  }
+    SetMovie(result.Search || []);
 
   useEffect(() => {
       fetchdata();
