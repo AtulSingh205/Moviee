@@ -28,7 +28,7 @@ const App = () => {
     SetMovie(result.Search || []);
 
   useEffect(() => {
-      fetchdata()
+      fetchdata();
   }, [search])
 
   return (
@@ -56,7 +56,7 @@ const App = () => {
       alt="logo"
     />
     <h1 className="text-4xl text-amber-100 font-bold text-center">
-      Unlimited movies, TV shows and more.
+      Unlimited movies, TV shows and more
     </h1>
      
     <Search SetSearch={SetSearch} search={search} />
