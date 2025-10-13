@@ -24,12 +24,12 @@ const App = () => {
     let Store = await fetch(
       `https://www.omdbapi.com/?apikey=${Api_Key}&s=${search || "marvel"}`
     );
-    let result = await Store.json();
-    SetMovie(result.Search || [])
+    let result = await Store.json()
+    SetMovie(result.Search || []);
 
   useEffect(() => {
-      fetchdata();
-  }, [search]);
+      fetchdata()
+  }, [search])
 
   return (
  <div className="relative h-screen w-full">
