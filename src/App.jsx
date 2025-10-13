@@ -20,12 +20,12 @@ const App = () => {
   });
 
   async function fetchdata() {
-    let Api_Key = "dd4ad9fd";
+    let Api_Key = "dd4ad9fd"
     let Store = await fetch(
       `https://www.omdbapi.com/?apikey=${Api_Key}&s=${search || "marvel"}`
     );
     let result = await Store.json();
-    SetMovie(result.Search || []);
+    SetMovie(result.Search || [])
 
   useEffect(() => {
       fetchdata();
