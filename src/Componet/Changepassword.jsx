@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const App = () => {
+const ChangePassword = ({ setActiveSection }) => {
   const [passwords, setPasswords] = useState({
     newPassword: "",
     confirmPassword: ""
@@ -31,7 +31,16 @@ const App = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-gray-100">
+    <div className="h-screen w-screen flex items-center justify-center bg-gray-100 relative">
+
+      {/* Close Button */}
+      <button
+        onClick={() => setActiveSection(null)}
+        className="absolute top-6 right-6 text-gray-600 hover:text-red-600 text-3xl font-bold"
+      >
+        ✕
+      </button>
+
       <div className="w-[90%] sm:w-[50%] md:w-[35%] bg-white p-8 rounded-2xl shadow-lg">
 
         <h1 className="font-bold text-2xl mb-6">Change Your Password</h1>
@@ -70,4 +79,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ChangePassword;

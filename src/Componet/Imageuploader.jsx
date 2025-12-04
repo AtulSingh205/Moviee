@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 
-const ImageUpload = () => {
+const ImageUpload = ({ setActiveSection }) => {
   const [profile, setProfile] = useState(null);
   const [pan, setPan] = useState(null);
   const [aadhaar, setAadhaar] = useState(null);
   const [bank, setBank] = useState(null);
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 flex justify-center py-10">
+    <div className="w-full min-h-screen bg-gray-100 flex justify-center py-10 relative">
+      
+      {/* Close Button */}
+      <button
+        onClick={() => setActiveSection(null)}
+        className="absolute top-6 right-6 text-gray-600 hover:text-red-600 text-3xl font-bold"
+      >
+        ✕
+      </button>
+
       <div className="w-[90%] md:w-[80%] lg:w-[70%] bg-white p-8 rounded-2xl shadow-sm">
 
         <h1 className="text-2xl font-semibold mb-8">Profile Image</h1>
@@ -65,9 +74,10 @@ const ImageUpload = () => {
               onChange={(e) => setAadhaar(e.target.files[0])}
             />
           </div>
+
         </div>
 
-        {/* BANK IMAGE - Full Width ALONE */}
+        {/* BANK IMAGE - Full Width */}
         <div className="mt-10 w-[50%]">
           <label className="font-medium text-gray-700">Bank Image</label>
           <div className="mt-3 h-40 w-full border-2 border-gray-300 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400">
