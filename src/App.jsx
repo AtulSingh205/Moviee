@@ -10,7 +10,7 @@ import DownloadInactiveUser from './Componet/DownloadInActiveUser'
 const App = () => {
   return (
     <div>
-      <DownloadInactiveUser/>
+      <TotalActiveUser/>
     </div>
   )
 }
