@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Editbankdetail = ({ setActiveSection }) => {
+const EditbankDetail = ({ onClose }) => {
   const [form, setForm] = useState({
     accountHolder: "",
     bankName: "",
@@ -9,15 +9,19 @@ const Editbankdetail = ({ setActiveSection }) => {
     branchName: "",
   });
 
+  // input change handler
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // submit
   const handleSubmit = () => {
     console.log("Bank Details:", form);
-    alert("Bank details updated successfully!");
+    alert("✅ Bank details updated successfully!");
+    onClose(); // close after submit
   };
 
+  // cancel
   const handleCancel = () => {
     setForm({
       accountHolder: "",
@@ -26,100 +30,101 @@ const Editbankdetail = ({ setActiveSection }) => {
       ifsc: "",
       branchName: "",
     });
+    onClose(); // close on cancel
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-100 flex items-center justify-center p-2">
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="relative w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-xl">
 
-      <div className="relative w-[90%] sm:w-[50%] md:w-[35%] bg-white p-6 rounded-xl shadow-md">
-
-        {/* ❌ Close Button */}
+        {/* CLOSE BUTTON */}
         <button
-          onClick={() => setActiveSection(null)}
-          className="absolute right-4 top-4 text-gray-600 text-xl hover:text-red-500"
+          onClick={onClose}
+          className="absolute top-4 right-4 text-xl h-9 w-9 flex items-center justify-center rounded-full hover:bg-gray-100"
         >
           ✕
         </button>
 
-        <h1 className="text-xl font-bold mb-4 text-gray-800">
+        {/* TITLE */}
+        <h1 className="text-xl sm:text-2xl font-bold mb-6 text-center">
           Edit Bank Details
         </h1>
 
-        {/* ACCOUNT HOLDER */}
-        <label className="text-gray-700 text-sm">Account Holder</label>
-        <input
-          type="text"
-          name="accountHolder"
-          value={form.accountHolder}
-          onChange={handleChange}
-          placeholder="Account Holder Name"
-          className="w-full mt-1 mb-3 p-2.5 border rounded-lg bg-gray-50 text-sm"
-        />
+        {/* FORM */}
+        <div className="space-y-4">
 
-        {/* BANK NAME */}
-        <label className="text-gray-700 text-sm">Bank Name</label>
-        <input
-          type="text"
-          name="bankName"
-          value={form.bankName}
-          onChange={handleChange}
-          placeholder="Bank Name"
-          className="w-full mt-1 mb-3 p-2.5 border rounded-lg bg-gray-50 text-sm"
-        />
+          <Input
+            label="Account Holder"
+            name="accountHolder"
+            value={form.accountHolder}
+            onChange={handleChange}
+            placeholder="Account Holder Name"
+          />
 
-        {/* ACCOUNT NUMBER */}
-        <label className="text-gray-700 text-sm">Account Number</label>
-        <input
-          type="number"
-          name="accountNo"
-          value={form.accountNo}
-          onChange={handleChange}
-          placeholder="Account Number"
-          className="w-full mt-1 mb-3 p-2.5 border rounded-lg bg-gray-50 text-sm"
-        />
+          <Input
+            label="Bank Name"
+            name="bankName"
+            value={form.bankName}
+            onChange={handleChange}
+            placeholder="Bank Name"
+          />
 
-        {/* IFSC */}
-        <label className="text-gray-700 text-sm">IFSC Code</label>
-        <input
-          type="text"
-          name="ifsc"
-          value={form.ifsc}
-          onChange={handleChange}
-          placeholder="IFSC Code"
-          className="w-full mt-1 mb-3 p-2.5 border rounded-lg bg-gray-50 text-sm"
-        />
+          <Input
+            label="Account Number"
+            name="accountNo"
+            value={form.accountNo}
+            onChange={handleChange}
+            placeholder="Account Number"
+            type="number"
+          />
 
-        {/* BRANCH NAME */}
-        <label className="text-gray-700 text-sm">Branch Name</label>
-        <input
-          type="text"
-          name="branchName"
-          value={form.branchName}
-          onChange={handleChange}
-          placeholder="Branch Name"
-          className="w-full mt-1 mb-4 p-2.5 border rounded-lg bg-gray-50 text-sm"
-        />
+          <Input
+            label="IFSC Code"
+            name="ifsc"
+            value={form.ifsc}
+            onChange={handleChange}
+            placeholder="IFSC Code"
+          />
+
+          <Input
+            label="Branch Name"
+            name="branchName"
+            value={form.branchName}
+            onChange={handleChange}
+            placeholder="Branch Name"
+          />
+        </div>
 
         {/* BUTTONS */}
-        <div className="flex gap-3">
+        <div className="mt-8 flex gap-3">
           <button
+            className="flex-1 bg-green-600 text-white py-2.5 rounded-xl hover:bg-green-700"
             onClick={handleSubmit}
-            className="w-full bg-green-600 text-white py-2.5 rounded-lg text-sm hover:bg-green-700"
           >
             Update
           </button>
 
           <button
+            className="flex-1 bg-gray-200 text-gray-800 py-2.5 rounded-xl hover:bg-gray-300"
             onClick={handleCancel}
-            className="w-full bg-red-500 text-white py-2.5 rounded-lg text-sm hover:bg-red-600"
           >
             Cancel
           </button>
         </div>
-
       </div>
     </div>
   );
 };
 
-export default Editbankdetail;
+/* REUSABLE INPUT */
+const Input = ({ label, ...props }) => (
+  <div>
+    <label className="text-sm font-medium text-gray-700">{label}</label>
+    <input
+      {...props}
+      className="w-full mt-1.5 p-3 rounded-xl border bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    />
+  </div>
+);
+
+export default EditbankDetail;
